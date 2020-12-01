@@ -23,7 +23,6 @@ UIElement* getCreditsPage();
 UIElement* getStatisticsPage();
 UIElement* getInstructionsPage();
 
-void playGame();
 void switchToPage(UIElement* page);
 
 // function to initialize global element pointers
@@ -104,7 +103,6 @@ UIElement* getMainMenu() {
     // add start button
     mainMenu->addChild(getStandardButton(20, 75, 120, "Start", [] {
         // on click: start game
-        playGame();
     }));
 
     // add instructions button
@@ -166,7 +164,9 @@ UIElement* getInstructionsPage() {
 
     // add body
     instructionsPage->addChild(new RectangleElement(20, 73, 280, 110, LCD.Black));
-    instructionsPage->addChild(new StringElement(30, 85, "Insert Instructions Here", LCD.White));
+    instructionsPage->addChild(new StringElement(30, 85, "Welcome to your farm! Touch plant seeds to purchase them, ", LCD.White));
+    instructionsPage->addChild(new StringElement(30, 102, "plots to plant seeds on them, and crop icons to sell them when ", LCD.White));
+    instructionsPage->addChild(new StringElement(30, 119, "they're full grown. Each day brings new surprises. Good luck! ", LCD.White));
 
     // add return button
     instructionsPage->addChild(getStandardButton(20, 190, 120, "Return", [] {
@@ -229,10 +229,4 @@ void switchToPage(UIElement* page) {
     if (CurrentPage) Screen->removeChild(CurrentPage);
     Screen->addChild(page);
     CurrentPage = page;
-}
-
-void playGame() {
-    UIElement* placeholder = new UIElement;
-    placeholder->addChild(new StringElement(100, 100, "Play Game Here", LCD.White));
-    switchToPage(placeholder);
 }
